@@ -25,6 +25,7 @@
   --amber-soft: #f0e4c0;
 
   --header-h: 60px;
+  --bottom-nav-h: 64px;
   --max-w: 470px;
   --r-sm: 6px;
   --r-md: 10px;
@@ -55,7 +56,71 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 input, textarea { font-family: inherit; color: inherit; }
 a { text-decoration: none; color: inherit; }
 
-.app { min-height: 100vh; padding-bottom: 30px; }
+.app { min-height: 100vh; padding-bottom: calc(var(--bottom-nav-h) + 20px); }
+
+/* ---------- Bottom Nav (from React version) ---------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-w);
+  height: var(--bottom-nav-h);
+  background: var(--paper);
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  align-items: stretch;
+  z-index: 100;
+}
+.bnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--ink-4);
+  font-size: 10px;
+  font-weight: 600;
+  transition: color 0.15s;
+  position: relative;
+}
+.bnav-item i { font-size: 17px; }
+.bnav-item.active { color: var(--ink); }
+.bnav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 2px;
+  background: var(--terra);
+  border-radius: 100px;
+}
+.bnav-write-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+.bnav-write {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(26,26,26,0.25);
+  transition: transform 0.15s;
+}
+.bnav-write:hover { transform: scale(1.04); }
 
 /* ---------- Header ---------- */
 .header {

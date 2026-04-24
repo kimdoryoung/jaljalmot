@@ -58,16 +58,34 @@
           <span class="logo-text">잘잘못<span class="logo-dot">.</span></span>
           <span class="logo-tag">동네 판결</span>
         </div>
-        <nav class="nav-tabs">
-          <button class="nav-btn active" data-view="list">
-            <i class="fas fa-house"></i><span>홈</span>
-          </button>
-          <button class="nav-btn" data-view="write">
-            <i class="fas fa-feather"></i><span>올리기</span>
-          </button>
+        <!-- 상단 nav-tabs는 숨기고 하단 네비게이션 사용 -->
+        <nav class="nav-tabs" style="display:none">
+          <button class="nav-btn active" data-view="list"></button>
+          <button class="nav-btn" data-view="write"></button>
         </nav>
       </div>
     </header>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav">
+      <button class="bnav-item active" data-view="list">
+        <i class="fas fa-house"></i><span>홈</span>
+      </button>
+      <button class="bnav-item" data-view="list-hot">
+        <i class="far fa-compass"></i><span>탐색</span>
+      </button>
+      <div class="bnav-write-wrap">
+        <button class="bnav-write" data-view="write">
+          <i class="fas fa-feather"></i>
+        </button>
+      </div>
+      <button class="bnav-item" data-view="list">
+        <i class="far fa-bell"></i><span>알림</span>
+      </button>
+      <button class="bnav-item" data-view="list">
+        <i class="far fa-user"></i><span>나</span>
+      </button>
+    </nav>
 
     <!-- ===== MAIN ===== -->
     <main class="main">
@@ -207,6 +225,19 @@
 
   <!-- app.js -->
   <script src="js/app.js?v=20260423a"></script>
+
+  <!-- Bottom nav → 기존 app.js의 nav-btn으로 위임 -->
+  <script>
+    document.querySelectorAll('.bnav-item, .bnav-write').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const view = btn.dataset.view === 'write' ? 'write' : 'list';
+        document.querySelectorAll('.bnav-item, .bnav-write').forEach(b => b.classList.remove('active'));
+        if (btn.classList.contains('bnav-item')) btn.classList.add('active');
+        const target = document.querySelector(`.nav-btn[data-view="${view}"]`);
+        if (target) target.click();
+      });
+    });
+  </script>
 
   <!-- Service Worker + PWA -->
   <script>
