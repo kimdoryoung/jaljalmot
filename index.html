@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>잘잘못 — 누구 잘못인가요?</title>
 
-  <!-- ===== PWA 메타태그 ===== -->
-  <meta name="theme-color" content="#1a1a1a" />
+  <!-- ===== PWA ===== -->
+  <meta name="theme-color" content="#f5f1e8" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -14,24 +14,21 @@
   <meta name="application-name" content="잘잘못" />
   <meta name="description" content="일상 속 갈등 상황을 올리고 다수의 시선으로 판단받는 커뮤니티 앱" />
 
-  <!-- OG / SNS 공유 -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="잘잘못 — 누구 잘못인가요?" />
   <meta property="og:description" content="일상 속 갈등 상황을 올리고 다수의 시선으로 판단받아보세요!" />
   <meta property="og:image" content="icons/icon-512.png" />
   <meta name="twitter:card" content="summary" />
 
-  <!-- PWA 매니페스트 -->
   <link rel="manifest" href="manifest.json" />
-
-  <!-- Apple Touch 아이콘 -->
   <link rel="apple-touch-icon" href="icons/icon-512.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
 
-  <!-- 폰트 / 아이콘 -->
+  <!-- Fonts / Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -42,8 +39,8 @@
     <div class="pwa-banner-inner">
       <img src="icons/icon-512.png" class="pwa-banner-icon" alt="잘잘못 아이콘" />
       <div class="pwa-banner-text">
-        <div class="pwa-banner-title">📲 앱으로 설치하기</div>
-        <div class="pwa-banner-sub">홈 화면에 추가하면 앱처럼 쓸 수 있어요!</div>
+        <div class="pwa-banner-title">앱으로 설치하기</div>
+        <div class="pwa-banner-sub">홈 화면에 추가하면 앱처럼 쓸 수 있어요</div>
       </div>
       <div class="pwa-banner-actions">
         <button class="pwa-install-btn" id="pwaInstallBtn">설치</button>
@@ -52,134 +49,153 @@
     </div>
   </div>
 
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="logo" id="logoBtn">
-        <span class="logo-icon">⚖️</span>
-        <span class="logo-text">잘잘못</span>
-      </div>
-      <nav class="nav-tabs">
-        <button class="nav-btn active" data-view="list">
-          <i class="fas fa-fire"></i> 이슈 목록
-        </button>
-        <button class="nav-btn" data-view="write">
-          <i class="fas fa-pen"></i> 상황 올리기
-        </button>
-      </nav>
-    </div>
-  </header>
+  <div class="app">
 
-  <!-- ===== MAIN ===== -->
-  <main class="main">
-
-    <!-- ======= 목록 화면 ======= -->
-    <section id="view-list" class="view active">
-
-      <!-- 필터/검색 바 -->
-      <div class="filter-bar">
-        <div class="filter-categories">
-          <button class="cat-btn active" data-cat="all">전체</button>
-          <button class="cat-btn" data-cat="연애">💕 연애</button>
-          <button class="cat-btn" data-cat="직장">💼 직장</button>
-          <button class="cat-btn" data-cat="가족">👨‍👩‍👧 가족</button>
-          <button class="cat-btn" data-cat="친구">🤝 친구</button>
-          <button class="cat-btn" data-cat="기타">🗂 기타</button>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo" id="logoBtn">
+          <span class="logo-text">잘잘못<span class="logo-dot">.</span></span>
+          <span class="logo-tag">동네 판결</span>
         </div>
-        <div class="search-wrap">
-          <i class="fas fa-search"></i>
-          <input type="text" id="searchInput" placeholder="상황 검색..." />
-        </div>
+        <nav class="nav-tabs">
+          <button class="nav-btn active" data-view="list">
+            <i class="fas fa-house"></i><span>홈</span>
+          </button>
+          <button class="nav-btn" data-view="write">
+            <i class="fas fa-feather"></i><span>올리기</span>
+          </button>
+        </nav>
       </div>
+    </header>
 
-      <!-- 정렬 -->
-      <div class="sort-bar">
-        <span class="sort-label">정렬:</span>
-        <button class="sort-btn active" data-sort="latest">최신순</button>
-        <button class="sort-btn" data-sort="hot">투표 많은 순</button>
-        <button class="sort-btn" data-sort="views">조회 많은 순</button>
-      </div>
+    <!-- ===== MAIN ===== -->
+    <main class="main">
 
-      <!-- 카드 리스트 -->
-      <div class="card-list" id="cardList">
-        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> 불러오는 중...</div>
-      </div>
+      <!-- ======= 목록 화면 ======= -->
+      <section id="view-list" class="view active">
 
-      <!-- 페이지네이션 -->
-      <div class="pagination" id="pagination"></div>
-    </section>
-
-    <!-- ======= 상세 화면 ======= -->
-    <section id="view-detail" class="view">
-      <button class="back-btn" id="backBtn">
-        <i class="fas fa-arrow-left"></i> 목록으로
-      </button>
-      <div id="detailContent"></div>
-    </section>
-
-    <!-- ======= 작성 화면 ======= -->
-    <section id="view-write" class="view">
-      <div class="write-container">
-        <h2 class="write-title">
-          <i class="fas fa-pen-nib"></i> 상황 올리기
-        </h2>
-        <p class="write-desc">솔직하게 상황을 적어보세요. 모두가 판단해 드립니다.</p>
-
-        <form id="writeForm" class="write-form">
-          <div class="form-group">
-            <label>닉네임</label>
-            <input type="text" id="fAuthor" placeholder="익명으로 남겨도 돼요" maxlength="20" />
+        <!-- 인트로 스트립 -->
+        <div class="intro-strip">
+          <div class="intro-kicker">오늘의 사랑방</div>
+          <h1 class="intro-title">
+            누가 <em>잘못</em>했는지,<br/>동네 사람들에게 물어보세요.
+          </h1>
+          <div class="intro-meta">
+            <span><span class="pip"></span>솔직하게 써주시면 더 정확한 판단을 받아요</span>
           </div>
-          <div class="form-group">
-            <label>카테고리 <span class="required">*</span></label>
-            <div class="category-select">
-              <button type="button" class="cat-select-btn" data-cat="연애">💕 연애</button>
-              <button type="button" class="cat-select-btn" data-cat="직장">💼 직장</button>
-              <button type="button" class="cat-select-btn" data-cat="가족">👨‍👩‍👧 가족</button>
-              <button type="button" class="cat-select-btn" data-cat="친구">🤝 친구</button>
-              <button type="button" class="cat-select-btn" data-cat="기타">🗂 기타</button>
+        </div>
+
+        <!-- 필터/검색 바 -->
+        <div class="filter-bar">
+          <div class="filter-categories">
+            <button class="cat-btn active" data-cat="all">전체</button>
+            <button class="cat-btn" data-cat="연애">연애</button>
+            <button class="cat-btn" data-cat="직장">직장</button>
+            <button class="cat-btn" data-cat="가족">가족</button>
+            <button class="cat-btn" data-cat="친구">친구</button>
+            <button class="cat-btn" data-cat="기타">기타</button>
+          </div>
+          <div class="sub-bar">
+            <div class="search-wrap">
+              <i class="fas fa-search"></i>
+              <input type="text" id="searchInput" placeholder="고민 검색" />
             </div>
-            <input type="hidden" id="fCategory" required />
           </div>
-          <div class="form-group">
-            <label>제목 <span class="required">*</span></label>
-            <div class="input-with-mic">
-              <input type="text" id="fTitle" placeholder="한 줄로 핵심을 요약해주세요" maxlength="60" required />
-              <button type="button" class="mic-btn" id="micTitle" title="음성 입력">
-                <i class="fas fa-microphone"></i>
+        </div>
+
+        <!-- 정렬 -->
+        <div class="sort-bar">
+          <span class="sort-label">정렬</span>
+          <button class="sort-btn active" data-sort="latest">최신</button>
+          <button class="sort-btn" data-sort="hot">인기</button>
+          <button class="sort-btn" data-sort="views">조회</button>
+        </div>
+
+        <!-- 카드 리스트 -->
+        <div class="card-list" id="cardList">
+          <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> 불러오는 중...</div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination" id="pagination"></div>
+      </section>
+
+      <!-- ======= 상세 화면 ======= -->
+      <section id="view-detail" class="view">
+        <div class="detail-top">
+          <button class="back-btn" id="backBtn">
+            <i class="fas fa-arrow-left"></i> <span>돌아가기</span>
+          </button>
+        </div>
+        <div id="detailContent"></div>
+      </section>
+
+      <!-- ======= 작성 화면 ======= -->
+      <section id="view-write" class="view">
+        <div class="write-container">
+          <h2 class="write-title">고민을 들려주세요</h2>
+          <p class="write-desc">사실 그대로 써주시면 동네 사람들이 더 정확하게 판단해드려요.</p>
+
+          <form id="writeForm" class="write-form">
+            <div class="form-group">
+              <label>닉네임</label>
+              <input type="text" id="fAuthor" placeholder="비워두면 익명으로 올라가요" maxlength="20" />
+            </div>
+
+            <div class="form-group">
+              <label>카테고리 <span class="required">* 필수</span></label>
+              <div class="category-select">
+                <button type="button" class="cat-select-btn" data-cat="연애">연애</button>
+                <button type="button" class="cat-select-btn" data-cat="직장">직장</button>
+                <button type="button" class="cat-select-btn" data-cat="가족">가족</button>
+                <button type="button" class="cat-select-btn" data-cat="친구">친구</button>
+                <button type="button" class="cat-select-btn" data-cat="기타">기타</button>
+              </div>
+              <input type="hidden" id="fCategory" required />
+            </div>
+
+            <div class="form-group">
+              <label>제목 <span class="required">* 필수</span></label>
+              <div class="input-with-mic">
+                <input type="text" id="fTitle" placeholder="한 줄로 상황을 요약해주세요" maxlength="60" required />
+                <button type="button" class="mic-btn" id="micTitle" title="음성 입력">
+                  <i class="fas fa-microphone"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>자세한 이야기 <span class="required">* 필수</span></label>
+              <div class="input-with-mic textarea-mic">
+                <textarea id="fContent" placeholder="상황을 있는 그대로, 양쪽 입장을 모두 써주세요.&#10;&#10;· 어떤 일이 있었는지&#10;· 누가 무엇을 했는지&#10;· 지금 어떤 상황인지" rows="8" required maxlength="2000"></textarea>
+                <button type="button" class="mic-btn mic-btn-textarea" id="micContent" title="음성 입력">
+                  <i class="fas fa-microphone"></i>
+                </button>
+              </div>
+              <span class="char-count"><span id="charCount">0</span> / 2000</span>
+              <button type="button" class="ai-btn" id="aiRefineBtn">
+                <i class="fas fa-wand-magic-sparkles"></i> AI로 내용 다듬기
               </button>
             </div>
-          </div>
-          <div class="form-group">
-            <label>상황 설명 <span class="required">*</span></label>
-            <div class="input-with-mic textarea-mic">
-              <textarea id="fContent" placeholder="상황을 최대한 자세히 설명해주세요. 누가 뭘 했는지, 왜 그랬는지 등을 포함하면 더 정확한 판단을 받을 수 있어요." rows="8" required maxlength="2000"></textarea>
-              <button type="button" class="mic-btn mic-btn-textarea" id="micContent" title="음성 입력">
-                <i class="fas fa-microphone"></i>
+
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancelWrite">취소</button>
+              <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> 판단 받기
               </button>
             </div>
-            <span class="char-count"><span id="charCount">0</span> / 2000</span>
-            <button type="button" class="ai-btn" id="aiRefineBtn">
-              ✨ AI로 내용 다듬기
-            </button>
-          </div>
+          </form>
+        </div>
+      </section>
 
-          <div class="form-actions">
-            <button type="button" class="btn-cancel" id="cancelWrite">취소</button>
-            <button type="submit" class="btn-submit">
-              <i class="fas fa-paper-plane"></i> 판단 받기
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-  </main>
+    </main>
+  </div>
 
   <!-- ===== TOAST ===== -->
   <div class="toast" id="toast"></div>
 
-  <!-- ===== MODAL (투표 완료) ===== -->
+  <!-- ===== MODAL ===== -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="voteModal">
       <div class="modal-emoji" id="modalEmoji"></div>
@@ -189,70 +205,51 @@
     </div>
   </div>
 
-  <!-- app.js: 버전 쿼리로 브라우저 캐시 강제 무효화 -->
-  <script src="js/app.js?v=20260311f"></script>
+  <!-- app.js -->
+  <script src="js/app.js?v=20260423a"></script>
 
-  <!-- ===== Service Worker: 캐시 완전 제거 후 재등록 ===== -->
+  <!-- Service Worker + PWA -->
   <script>
     (async () => {
-      // 1) 기존 SW 전부 해제
       if ('serviceWorker' in navigator) {
         const regs = await navigator.serviceWorker.getRegistrations();
         await Promise.all(regs.map(r => r.unregister()));
-        console.log('[APP] 기존 SW 전부 해제 완료');
       }
-      // 2) 캐시 전부 삭제
       if ('caches' in window) {
         const keys = await caches.keys();
         await Promise.all(keys.map(k => caches.delete(k)));
-        console.log('[APP] 캐시 전부 삭제 완료');
       }
-      // 3) 새 SW 등록
       if ('serviceWorker' in navigator) {
-        try {
-          const reg = await navigator.serviceWorker.register('/sw.js?v=4');
-          console.log('✅ SW 새로 등록:', reg.scope);
-        } catch(e) {
-          console.warn('SW 등록 실패:', e);
-        }
+        try { await navigator.serviceWorker.register('/sw.js?v=5'); } catch(e) {}
       }
     })();
 
-    // PWA 설치 프롬프트 처리
     let deferredPrompt;
-    const pwaBanner   = document.getElementById('pwaBanner');
-    const installBtn  = document.getElementById('pwaInstallBtn');
-    const dismissBtn  = document.getElementById('pwaDismissBtn');
+    const pwaBanner  = document.getElementById('pwaBanner');
+    const installBtn = document.getElementById('pwaInstallBtn');
+    const dismissBtn = document.getElementById('pwaDismissBtn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      // 이미 설치됐거나 사용자가 닫은 경우 표시 안 함
-      const dismissed = localStorage.getItem('pwa_dismissed');
-      if (!dismissed) {
-        setTimeout(() => { pwaBanner.style.display = 'flex'; }, 1500);
+      if (!localStorage.getItem('pwa_dismissed')) {
+        setTimeout(() => { pwaBanner.style.display = 'block'; }, 1500);
       }
     });
-
     installBtn?.addEventListener('click', async () => {
       if (!deferredPrompt) return;
       pwaBanner.style.display = 'none';
       deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log('설치 선택:', outcome);
+      await deferredPrompt.userChoice;
       deferredPrompt = null;
     });
-
     dismissBtn?.addEventListener('click', () => {
       pwaBanner.style.display = 'none';
       localStorage.setItem('pwa_dismissed', '1');
     });
-
-    // 앱으로 실행 중인 경우 배너 숨김
     window.addEventListener('appinstalled', () => {
       pwaBanner.style.display = 'none';
       deferredPrompt = null;
-      console.log('✅ PWA 설치 완료!');
     });
   </script>
 </body>
